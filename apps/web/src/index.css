@@ -1,0 +1,40 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Article title */
+h1 {
+  font-family: Charter, Georgia, serif;
+  font-size: 42px;
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+/* Section heading */
+h2 {
+  font-family: Charter, Georgia, serif;
+  font-size: 32px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+/* Body */
+p {
+  font-family: Charter, Georgia, serif;
+  font-size: 21px;
+  line-height: 1.58;
+  font-weight: 400;
+}
+
+/* UI */
+.ui, body, button, input, select, textarea {
+  font-family: Söhne, Inter, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+body {
+  margin: 0;
+  background-color: #f8fafc;
+  color: #0f172a;
+}
