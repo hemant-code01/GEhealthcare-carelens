@@ -2,8 +2,8 @@
   "name": "carelens",
   "private": true,
   "scripts": {
-    "dev": "pnpm --parallel --filter ./apps/* dev",
-    "build": "pnpm --recursive --filter ./apps/* build",
+    "dev": "pnpm --parallel --filter \"./apps/*\" run dev",
+    "build": "pnpm --recursive --filter \"./apps/*\" run build",
     "test": "pnpm --recursive test",
     "typecheck": "pnpm --recursive typecheck"
   },
