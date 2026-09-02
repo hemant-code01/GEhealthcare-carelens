@@ -1,0 +1,217 @@
+[
+  {
+    "hospitalId": "HOSP-001",
+    "name": "Sunrise Multispecialty Hospital",
+    "location": "Bengaluru",
+    "specialties": ["cardiology", "orthopedics", "general_surgery"],
+    "empanelment": [
+      { "insurer": "Synthetic Health Assurance Co.", "networkType": "cashless" },
+      { "insurer": "Synthetic State Health Scheme", "networkType": "cashless" }
+    ],
+    "roomCategories": [
+      { "category": "general_ward", "tariffPerDay": 1200 },
+      { "category": "twin_sharing", "tariffPerDay": 2000 },
+      { "category": "deluxe_private", "tariffPerDay": 4000 }
+    ],
+    "capabilities": ["icu", "cath_lab"]
+  },
+  {
+    "hospitalId": "HOSP-002",
+    "name": "Lakeview Heart Institute",
+    "location": "Bengaluru",
+    "specialties": ["cardiology"],
+    "empanelment": [
+      { "insurer": "Synthetic Health Assurance Co.", "networkType": "cashless" }
+    ],
+    "roomCategories": [
+      { "category": "twin_sharing", "tariffPerDay": 2200 },
+      { "category": "deluxe_private", "tariffPerDay": 4500 }
+    ],
+    "capabilities": ["icu", "cath_lab", "ccu"]
+  },
+  {
+    "hospitalId": "HOSP-003",
+    "name": "City Care General Hospital",
+    "location": "Bengaluru",
+    "specialties": ["general_surgery", "orthopedics", "pediatrics"],
+    "empanelment": [
+      { "insurer": "Synthetic State Health Scheme", "networkType": "cashless" }
+    ],
+    "roomCategories": [
+      { "category": "general_ward", "tariffPerDay": 900 },
+      { "category": "twin_sharing", "tariffPerDay": 1500 }
+    ],
+    "capabilities": ["icu"]
+  },
+  {
+    "hospitalId": "HOSP-004",
+    "name": "Green Valley Hospital",
+    "location": "Mysuru",
+    "specialties": ["general_surgery", "gynecology"],
+    "empanelment": [
+      { "insurer": "Synthetic State Health Scheme", "networkType": "cashless" }
+    ],
+    "roomCategories": [
+      { "category": "general_ward", "tariffPerDay": 800 },
+      { "category": "twin_sharing", "tariffPerDay": 1300 }
+    ],
+    "capabilities": []
+  },
+  {
+    "hospitalId": "HOSP-005",
+    "name": "Apex Superspecialty Hospital",
+    "location": "Bengaluru",
+    "specialties": ["cardiology", "nephrology", "oncology"],
+    "empanelment": [
+      { "insurer": "Synthetic Health Assurance Co.", "networkType": "cashless" }
+    ],
+    "roomCategories": [
+      { "category": "twin_sharing", "tariffPerDay": 2500 },
+      { "category": "deluxe_private", "tariffPerDay": 5000 },
+      { "category": "suite", "tariffPerDay": 8000 }
+    ],
+    "capabilities": ["icu", "cath_lab", "dialysis"]
+  },
+  {
+    "hospitalId": "HOSP-006",
+    "name": "Riverside Orthopedic Center",
+    "location": "Bengaluru",
+    "specialties": ["orthopedics"],
+    "empanelment": [
+      { "insurer": "Synthetic Health Assurance Co.", "networkType": "reimbursement" }
+    ],
+    "roomCategories": [
+      { "category": "twin_sharing", "tariffPerDay": 1800 },
+      { "category": "deluxe_private", "tariffPerDay": 3200 }
+    ],
+    "capabilities": ["icu"]
+  },
+  {
+    "hospitalId": "HOSP-007",
+    "name": "Hosur Road Community Hospital",
+    "location": "Bengaluru",
+    "specialties": ["general_surgery", "pediatrics", "gynecology"],
+    "empanelment": [
+      { "insurer": "Synthetic State Health Scheme", "networkType": "cashless" }
+    ],
+    "roomCategories": [
+      { "category": "general_ward", "tariffPerDay": 700 }
+    ],
+    "capabilities": []
+  },
+  {
+    "hospitalId": "HOSP-008",
+    "name": "Whitefield Multispecialty Hospital",
+    "location": "Bengaluru",
+    "specialties": ["cardiology", "orthopedics", "neurology"],
+    "empanelment": [
+      { "insurer": "Synthetic Health Assurance Co.", "networkType": "cashless" }
+    ],
+    "roomCategories": [
+      { "category": "twin_sharing", "tariffPerDay": 2100 },
+      { "category": "deluxe_private", "tariffPerDay": 4200 }
+    ],
+    "capabilities": ["icu", "cath_lab"]
+  },
+  {
+    "hospitalId": "HOSP-009",
+    "name": "Mysuru District Hospital",
+    "location": "Mysuru",
+    "specialties": ["general_surgery", "orthopedics"],
+    "empanelment": [
+      { "insurer": "Synthetic State Health Scheme", "networkType": "cashless" }
+    ],
+    "roomCategories": [
+      { "category": "general_ward", "tariffPerDay": 600 },
+      { "category": "twin_sharing", "tariffPerDay": 1100 }
+    ],
+    "capabilities": ["icu"]
+  },
+  {
+    "hospitalId": "HOSP-010",
+    "name": "Cauvery Heart & Multispecialty Hospital",
+    "location": "Mysuru",
+    "specialties": ["cardiology", "general_surgery"],
+    "empanelment": [
+      { "insurer": "Synthetic Health Assurance Co.", "networkType": "cashless" },
+      { "insurer": "Synthetic State Health Scheme", "networkType": "cashless" }
+    ],
+    "roomCategories": [
+      { "category": "general_ward", "tariffPerDay": 1000 },
+      { "category": "twin_sharing", "tariffPerDay": 1900 },
+      { "category": "deluxe_private", "tariffPerDay": 3800 }
+    ],
+    "capabilities": ["icu", "cath_lab"]
+  },
+  {
+    "hospitalId": "HOSP-011",
+    "name": "Silicon City Hospital",
+    "location": "Bengaluru",
+    "specialties": ["general_surgery", "oncology", "urology"],
+    "empanelment": [
+      { "insurer": "Synthetic Health Assurance Co.", "networkType": "cashless" }
+    ],
+    "roomCategories": [
+      { "category": "twin_sharing", "tariffPerDay": 2300 },
+      { "category": "deluxe_private", "tariffPerDay": 4600 }
+    ],
+    "capabilities": ["icu", "dialysis"]
+  },
+  {
+    "hospitalId": "HOSP-012",
+    "name": "Nandi Hills Nursing Home",
+    "location": "Bengaluru",
+    "specialties": ["gynecology", "pediatrics"],
+    "empanelment": [
+      { "insurer": "Synthetic State Health Scheme", "networkType": "cashless" }
+    ],
+    "roomCategories": [
+      { "category": "general_ward", "tariffPerDay": 750 },
+      { "category": "twin_sharing", "tariffPerDay": 1250 }
+    ],
+    "capabilities": []
+  },
+  {
+    "hospitalId": "HOSP-013",
+    "name": "Precision Neuro & Spine Institute",
+    "location": "Bengaluru",
+    "specialties": ["neurology", "orthopedics"],
+    "empanelment": [
+      { "insurer": "Synthetic Health Assurance Co.", "networkType": "cashless" }
+    ],
+    "roomCategories": [
+      { "category": "twin_sharing", "tariffPerDay": 2600 },
+      { "category": "deluxe_private", "tariffPerDay": 5200 }
+    ],
+    "capabilities": ["icu"]
+  },
+  {
+    "hospitalId": "HOSP-014",
+    "name": "Bannerghatta Road Hospital",
+    "location": "Bengaluru",
+    "specialties": ["general_surgery", "cardiology"],
+    "empanelment": [
+      { "insurer": "Synthetic Health Assurance Co.", "networkType": "cashless" },
+      { "insurer": "Synthetic State Health Scheme", "networkType": "cashless" }
+    ],
+    "roomCategories": [
+      { "category": "general_ward", "tariffPerDay": 1100 },
+      { "category": "twin_sharing", "tariffPerDay": 1900 },
+      { "category": "deluxe_private", "tariffPerDay": 3900 }
+    ],
+    "capabilities": ["icu", "cath_lab"]
+  },
+  {
+    "hospitalId": "HOSP-015",
+    "name": "Mandya Rural Health Center",
+    "location": "Mandya",
+    "specialties": ["general_surgery", "pediatrics"],
+    "empanelment": [
+      { "insurer": "Synthetic State Health Scheme", "networkType": "cashless" }
+    ],
+    "roomCategories": [
+      { "category": "general_ward", "tariffPerDay": 500 }
+    ],
+    "capabilities": []
+  }
+]

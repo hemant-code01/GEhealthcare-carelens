@@ -1,0 +1,188 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum SchemeType {
+  private
+  state
+  government
+}
+
+enum CapType {
+  fixed
+  percentage
+}
+
+enum NetworkType {
+  cashless
+  reimbursement
+  both
+}
+
+enum UrgencyLevel {
+  planned
+  urgent
+  emergency
+}
+
+enum EligibilityStatus {
+  eligible
+  partially_eligible
+  ineligible
+}
+
+enum EventType {
+  admission
+  room_change
+  procedure
+  investigation
+  discharge
+}
+
+enum Severity {
+  low
+  medium
+  high
+}
+
+// ---- M1: Policy & AI / Normalization ----
+
+model Policy {
+  id                         String       @id @default(uuid()) @map("policy_id")
+  insurerName                String       @map("insurer_name")
+  schemeType                 SchemeType   @map("scheme_type")
+  sumInsured                 Float        @map("sum_insured")
+  roomRentLimit              Float?       @map("room_rent_limit")
+  roomRentCapType            CapType?     @map("room_rent_cap_type")
+  proportionateDeductionRule Boolean      @map("proportionate_deduction_rule")
+  subLimits                  Json         @default("[]") @map("sub_limits")
+  exclusions                 Json         @default("[]")
+  waitingPeriods              Json         @default("[]") @map("waiting_periods")
+  consumableCoverageRules    String?      @map("consumable_coverage_rules")
+  networkType                NetworkType  @map("network_type")
+  createdAt                  DateTime     @default(now()) @map("created_at")
+
+  careRequests CareRequest[]
+
+  @@map("policies")
+}
+
+model CareRequest {
+  id           String       @id @default(uuid()) @map("care_request_id")
+  patientId    String       @map("patient_id")
+  specialty    String
+  procedure    String?
+  location     String
+  roomTypePref String?      @map("room_type_pref")
+  budget       Float?
+  urgencyLevel UrgencyLevel @map("urgency_level")
+  policyId     String       @map("policy_id")
+  policy       Policy       @relation(fields: [policyId], references: [id])
+  createdAt    DateTime     @default(now()) @map("created_at")
+
+  matchResults      MatchResult[]
+  decisionSnapshots DecisionSnapshot[]
+  careEvents        CareEvent[]
+
+  @@map("care_requests")
+}
+
+// ---- M2: Hospital Data & Matching ----
+
+model Hospital {
+  id             String @id @default(uuid()) @map("hospital_id")
+  name           String
+  location       String
+  specialties    Json   @default("[]")
+  empanelment    Json   @default("[]")
+  roomCategories Json   @default("[]") @map("room_categories")
+  capabilities   Json   @default("[]")
+
+  matchResults      MatchResult[]
+  decisionSnapshots DecisionSnapshot[]
+
+  @@map("hospitals")
+}
+
+model MatchResult {
+  id                     String            @id @default(uuid())
+  careRequestId          String            @map("care_request_id")
+  careRequest            CareRequest       @relation(fields: [careRequestId], references: [id])
+  hospitalId             String            @map("hospital_id")
+  hospital               Hospital          @relation(fields: [hospitalId], references: [id])
+  eligibilityStatus      EligibilityStatus @map("eligibility_status")
+  eligibleRoomCategories Json              @default("[]") @map("eligible_room_categories")
+  networkMatch           Boolean           @map("network_match")
+  matchScore             Float             @map("match_score")
+  constraintsApplied     Json              @default("[]") @map("constraints_applied")
+  createdAt              DateTime          @default(now()) @map("created_at")
+
+  @@map("match_results")
+}
+
+// ---- M3: Deterministic Decision Engine & Divergence ----
+
+model DecisionSnapshot {
+  id                             String      @id @default(uuid()) @map("snapshot_id")
+  timestamp                      DateTime    @default(now())
+  careRequestId                  String      @map("care_request_id")
+  careRequest                    CareRequest @relation(fields: [careRequestId], references: [id])
+  hospitalId                     String      @map("hospital_id")
+  hospital                       Hospital    @relation(fields: [hospitalId], references: [id])
+  roomCategorySelected           String      @map("room_category_selected")
+  estimatedCoverageAmount        Float       @map("estimated_coverage_amount")
+  estimatedOutOfPocket           Float       @map("estimated_out_of_pocket")
+  subLimitsApplied               Json        @default("[]") @map("sub_limits_applied")
+  proportionateDeductionApplied  Boolean     @map("proportionate_deduction_applied")
+  proportionateDeductionPercent  Float?      @map("proportionate_deduction_percent")
+  consumableSurchargeEstimate    Float       @default(0) @map("consumable_surcharge_estimate")
+  safeAdministrativeOption       String?     @map("safe_administrative_option")
+
+  alertsAsPrevious DivergenceAlert[] @relation("PreviousSnapshot")
+  alertsAsNew      DivergenceAlert[] @relation("NewSnapshot")
+
+  @@map("decision_snapshots")
+}
+
+// ---- M4: Patient Journey, Event Simulation & Explanation/Output ----
+
+model CareEvent {
+  id            String      @id @default(uuid()) @map("event_id")
+  careRequestId String      @map("care_request_id")
+  careRequest   CareRequest @relation(fields: [careRequestId], references: [id])
+  eventType     EventType   @map("event_type")
+  timestamp     DateTime    @default(now())
+  payload       Json        @default("{}")
+
+  divergenceAlerts DivergenceAlert[]
+
+  @@map("care_events")
+}
+
+model DivergenceAlert {
+  id                     String           @id @default(uuid()) @map("alert_id")
+  eventId                String           @map("event_id")
+  event                  CareEvent        @relation(fields: [eventId], references: [id])
+  previousSnapshotId     String           @map("previous_snapshot_id")
+  previousSnapshot       DecisionSnapshot @relation("PreviousSnapshot", fields: [previousSnapshotId], references: [id])
+  newSnapshotId          String           @map("new_snapshot_id")
+  newSnapshot            DecisionSnapshot @relation("NewSnapshot", fields: [newSnapshotId], references: [id])
+  whatChanged            String           @map("what_changed")
+  whyChangedRuleRef      String           @map("why_changed_rule_ref")
+  whyChangedClause       String?          @map("why_changed_clause")
+  financialDelta         Float            @map("financial_delta")
+  recommendedSafeAction  String?          @map("recommended_safe_action")
+  severity               Severity
+  createdAt              DateTime         @default(now()) @map("created_at")
+
+  @@map("divergence_alerts")
+}
+
+// NOTE: JourneyTimeline is NOT a table.
+// GET /journey/timeline builds it at read time by joining
+// CareEvent + DecisionSnapshot + DivergenceAlert on careRequestId.

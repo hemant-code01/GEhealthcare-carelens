@@ -1,0 +1,17 @@
+{
+  "policyId": "POL-STATE-002",
+  "insurerName": "Synthetic State Health Scheme",
+  "schemeType": "state",
+  "sumInsured": 150000,
+  "roomRentLimit": 1000,
+  "roomRentCapType": "fixed",
+  "proportionateDeductionRule": false,
+  "subLimits": [
+    { "category": "cardiac_procedure", "capType": "fixed", "capValue": 90000 },
+    { "category": "diagnostics", "capType": "fixed", "capValue": 5000 }
+  ],
+  "exclusions": ["out_of_network_hospitals"],
+  "waitingPeriods": [],
+  "consumableCoverageRules": "Government-notified package rates only; no separate consumable billing permitted within package",
+  "networkType": "cashless"
+}

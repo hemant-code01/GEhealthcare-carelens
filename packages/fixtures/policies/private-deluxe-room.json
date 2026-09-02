@@ -1,0 +1,19 @@
+{
+  "policyId": "POL-PRIVATE-001",
+  "insurerName": "Synthetic Health Assurance Co.",
+  "schemeType": "private",
+  "sumInsured": 500000,
+  "roomRentLimit": 2500,
+  "roomRentCapType": "fixed",
+  "proportionateDeductionRule": true,
+  "subLimits": [
+    { "category": "surgeon_fees", "capType": "percentage", "capValue": 40 },
+    { "category": "ot_fees", "capType": "percentage", "capValue": 40 }
+  ],
+  "exclusions": ["cosmetic_procedures", "dental_non_accidental"],
+  "waitingPeriods": [
+    { "condition": "pre_existing_disease", "durationMonths": 24 }
+  ],
+  "consumableCoverageRules": "Non-reimbursable: PPE kits, catheter accessories, specialized stents above threshold",
+  "networkType": "cashless"
+}

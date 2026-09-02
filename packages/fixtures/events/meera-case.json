@@ -1,0 +1,43 @@
+[
+  {
+    "eventId": "EVT-001",
+    "careRequestId": "CR-MEERA-001",
+    "eventType": "admission",
+    "timestamp": "2026-09-01T08:00:00Z",
+    "payload": {
+      "hospitalId": "HOSP-001",
+      "roomCategorySelected": "twin_sharing",
+      "note": "Standard room selected, cashless pre-auth approved"
+    }
+  },
+  {
+    "eventId": "EVT-002",
+    "careRequestId": "CR-MEERA-001",
+    "eventType": "room_change",
+    "timestamp": "2026-09-03T14:00:00Z",
+    "payload": {
+      "hospitalId": "HOSP-001",
+      "roomCategorySelected": "deluxe_private",
+      "note": "Family upgrades to Deluxe Private Room, unaware of proportionate deduction cap"
+    }
+  },
+  {
+    "eventId": "EVT-003",
+    "careRequestId": "CR-MEERA-001",
+    "eventType": "procedure",
+    "timestamp": "2026-09-04T10:00:00Z",
+    "payload": {
+      "procedureName": "cardiac_bypass_surgery",
+      "note": "Procedure performed while in Deluxe Private Room"
+    }
+  },
+  {
+    "eventId": "EVT-004",
+    "careRequestId": "CR-MEERA-001",
+    "eventType": "discharge",
+    "timestamp": "2026-09-08T11:00:00Z",
+    "payload": {
+      "note": "Discharge billing finalized, proportionate deduction applied to surgeon and OT fees"
+    }
+  }
+]
